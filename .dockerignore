@@ -1,0 +1,21 @@
+# File globs listed here won't be uploaded to Docker during builds. Trimming the
+# build context like this speeds up Docker builds.
+
+# OSX
+.DS_Store
+
+# Xcode
+*.xcodeproj
+
+# Swift
+# NOTE: These aren't necessary unless you are doing swift build locally. These
+# swift build artifacts are created during Docker builds.
+Packages
+.build
+
+README.md
+.git
+.gitignore
+Dockerfile
+.dockerignore
+Makefile
