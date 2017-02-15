@@ -1,0 +1,11 @@
+# OSX
+.DS_Store
+
+# Xcode
+*.xcodeproj
+
+# Swift
+# NOTE: These aren't necessary unless you are doing swift build locally, the
+# residual build artifacts are removed when iterating on container image layers.
+Packages
+.build
