@@ -2,24 +2,42 @@
 Provides a common baseline for building Swift (Kitura) microservices on linux, 
 that run anywhere.
 
-## Important
-The `master` branch of this repository only contains the Swift package artifacts. All of
-the Docker related artifacts are in the `docker` branch. So if you are looking for how to
-enable your Swift microservice on Docker please checkout to the `docker` branch.
-```
-$ git checkout docker
-```
-Otherwise, continue on to build/run your microservice locally.
+There is a `Makefile` provided that simply wraps Docker commands. You don't have
+to use it, I simply find it makes iterating faster. Feel free to use it for
+reference.
+
+## Image vs. Container
+TODO: Add notes about what kings of things to do during buildtime, and what kinds of
+things to do during runtime.
 
 ## Build
 ```
-$ swift build
+$ make build
+```
+or
+```
+$ # NOTE: the --force-rm flag prevents residual build containers from sticking around.
+$ docker build -t swift-microservice --force-rm .
 ```
 
+### Debugging build errors
+TODO: Add instructions on how to inspect image layers.
+
 ## Run
-Simply run the executable that built. Note that by default this microservice requires port 80
 ```
-$ ./build/debug/Swift-Microservice
+$ make run
+```
+or
+```
+$ docker rm -fv swift-microservice
+
+$ # NOTE: The -P flag tells Docker to map an ephemeral ports to the ports declared in EXPOSE directives in Dockerfile.
+$ docker run --name swift-microservice -d -P -m 128m swift-microservice
+
+$ docker inspect -f '{{.NetworkSettings.Ports}}' swift-microservice
+map[80/tcp:[{0.0.0.0 32785}] 443/tcp:[{0.0.0.0 32784}]]
+
+$ # For this example, I can visit http://localhost:32785 in a browser to query my swift-microservice.
 ```
 
 ## Contributing
