@@ -6,10 +6,6 @@ There is a `Makefile` provided that simply wraps Docker commands. You don't have
 to use it, I simply find it makes iterating faster. Feel free to use it for
 reference.
 
-## Image vs. Container
-TODO: Add notes about what kings of things to do during buildtime, and what kinds of
-things to do during runtime.
-
 ## Build
 ```
 $ make build
