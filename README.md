@@ -16,9 +16,6 @@ $ # NOTE: the --force-rm flag prevents residual build containers from sticking a
 $ docker build -t swift-microservice --force-rm .
 ```
 
-### Debugging build errors
-TODO: Add instructions on how to inspect image layers.
-
 ## Run
 ```
 $ make run
